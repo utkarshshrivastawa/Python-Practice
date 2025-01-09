@@ -1,0 +1,60 @@
+Given an integer n, return true if n has exactly three positive divisors. Otherwise, return false.
+
+An integer m is a divisor of n if there exists an integer k such that n = k * m.
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: false
+Explantion: 2 has only two divisors: 1 and 2.
+Example 2:
+
+Input: n = 4
+Output: true
+Explantion: 4 has three divisors: 1, 2, and 4.
+ 
+
+Constraints:
+
+1 <= n <= 104
+
+#CODE 
+# Intuition
+Perfect Square Check
+Prime Check
+
+# Approach
+Perfect Square Check:
+A number n with exactly three divisors must be a perfect square (𝑝2).
+Prime Check:
+The square root of 𝑛 n (𝑝) must be a prime number for 𝑛  n to have exactly three divisors.
+
+
+# Complexity
+- Time complexity:
+O(n^1/4 )
+
+- Space complexity:
+O(1)
+
+# Code
+```python []
+class Solution(object):
+    def isThree(self, n):
+        # Check if n is a perfect square if a number is perfect square it must have atleat 3 divisor
+        root = int(n**0.5)
+        if root * root != n:
+            return False
+        
+        # Check if the square root is a prime number
+        def is_prime(num):
+            if num < 2:
+                return False
+            for i in range(2, int(num**0.5) + 1):
+                if num % i == 0:
+                    return False
+            return True
+        
+        return is_prime(root)
